@@ -1,0 +1,61 @@
+plugins {
+  id 'java'
+  id 'org.springframework.boot' version '3.5.3'
+  id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.gitbaby'
+version = '0.0.1-SNAPSHOT'
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(21)
+  }
+}
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter'
+  developmentOnly 'org.springframework.boot:spring-boot-devtools'
+  implementation("org.springframework.boot:spring-boot-starter-web")
+
+  implementation 'org.projectlombok:lombok'
+  testImplementation 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  testAnnotationProcessor 'org.projectlombok:lombok'
+
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+  // AspectJ AOP (spring-aop는 내부에서 자동 포함)
+  implementation("org.springframework.boot:spring-boot-starter-aop")
+
+  // AspectJ runtime (포인트컷, JoinPoint 등 위해 필요)
+  implementation("org.aspectj:aspectjrt:1.9.24")  // 최신 안정 버전
+  implementation("org.aspectj:aspectjweaver:1.9.24")  // weaving 위해 필요
+
+  // Log4j2 사용 (logback 제거됨)
+  implementation("org.springframework.boot:spring-boot-starter-log4j2")
+
+  // JSON 처리용 (Notion API 전송)
+  implementation("com.fasterxml.jackson.core:jackson-databind")
+  implementation("org.springframework.boot:spring-boot-starter-json")
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
+}
+
+configurations.all {
+  exclude group: "org.apache.logging.log4j", module: "log4j-slf4j2-impl"
+  exclude group: "org.slf4j", module: "slf4j-log4j12"
+}

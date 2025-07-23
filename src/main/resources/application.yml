@@ -1,0 +1,10 @@
+spring:
+  config:
+    import:
+      - optional:classpath:secret/notion.yml
+  application:
+    name: error
+logging:
+  level:
+    root: info
+    com.gitbaby: debug
