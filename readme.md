@@ -35,6 +35,26 @@ Spring Boot 기반 애플리케이션에서 발생하는 예외 정보를 Notion
 - StackTrace 길이 2000자 제한 인식 → 30줄만 추출하도록 개선
 - Postman 통해 Notion API 직접 호출하여 테스트 검증 완료
 
+### 2025-07-29
+- Notion 연동 DSL 구조 설계
+    - `PropertiesBuilder`, `BlockBuilder`, `NotionPageRequestBuilder` 분리 설계
+    - 메서드 체이닝 방식으로 JSON 구조 생성 가능하도록 설계
+
+- 예외 로깅 시스템 구성
+    - `ExceptionLoggingAspect`로 예외 감지
+    - `NotionLogger`에서 Notion API 호출
+    - 스택트레이스 30줄 제한 및 1900자 제한 설정
+
+- 예외 메시지 유틸 분리
+    - `getStackTrace()`, `getRootCauseMessage()` 유틸 분리
+    - 핵심 예외 메시지만 추출하여 제목(title) 구성
+
+- Block 구성 개선
+    - `code()` 블록 language를 enum(`CodeLanguage`)으로 관리
+    - `@JsonValue`로 enum 문자열 자동 직렬화 (`"JAVA"` → `"java"`)
+
+- 테스트 코드 추가
+    - Notion DSL 조립 테스트 작성 (SpringBootTest)
 ---
 
 
