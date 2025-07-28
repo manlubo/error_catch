@@ -19,18 +19,8 @@ public class ExceptionLoggingAspect {
 
   @AfterThrowing(pointcut = "execution(* com.gitbaby..*(..))", throwing = "ex")
   public void captureException(JoinPoint joinPoint, Throwable ex) {
-    String method = joinPoint.getSignature().toShortString();
-    Throwable root = getRootCause(ex);
+    log.error("❗ 예외 감지됨: {}", ex.toString(), ex);
 
-    log.error("❗ 예외 감지됨: {}", root.toString());
-    notionLogger.send(root); // 📬 노션 전송
-  }
-
-  private Throwable getRootCause(Throwable ex) {
-    Throwable cause = ex;
-    while (cause.getCause() != null) {
-      cause = cause.getCause();
-    }
-    return cause;
+    notionLogger.send(ex); // 📬 노션 전송: 내부에서 root 추출 및 포맷 처리
   }
 }
