@@ -3,14 +3,10 @@ package com.gitbaby.error.util;
 import com.gitbaby.error.config.NotionConfig;
 
 import com.gitbaby.error.domain.en.CodeLanguage;
-import com.gitbaby.error.exception.ExceptionFormater;
 import com.gitbaby.error.service.NotionUploadService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
-
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +30,7 @@ public class NotionLogger {
       .build();
 
     List<Map<String, Object>> blocks = BlockBuilder.create()
-      .heading2("💥 Stacktrace")
+      .heading2("Stacktrace")
       .code(CodeLanguage.JAVA, rootError)
       .build();
 
@@ -44,6 +40,6 @@ public class NotionLogger {
       .children(blocks)
       .build();
 
-    notionUploadService.upload(json); // 👉 여기서만 전송
+    notionUploadService.upload(json);
   }
 }

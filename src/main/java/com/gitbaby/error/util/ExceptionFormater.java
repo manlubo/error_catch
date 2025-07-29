@@ -1,4 +1,4 @@
-package com.gitbaby.error.exception;
+package com.gitbaby.error.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

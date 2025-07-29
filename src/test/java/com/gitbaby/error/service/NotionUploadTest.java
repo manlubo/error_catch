@@ -25,17 +25,17 @@ public class NotionUploadTest {
   @DisplayName("📄 노션 페이지 업로드 - 카테고리, 문서이름, 생성일시 + 헤딩/코드 블럭 구성")
   void uploadToNotionPage() throws JsonProcessingException {
     String requestBody = NotionPageRequestBuilder.create()
-      .database("239720ef233480d4abbdf400bf39ac29") // 실제 DB ID로 교체해줘
+      .database("239720ef233480d4abbdf400bf39ac29")
       .properties(
         PropertiesBuilder.create()
           .multiSelect("카테고리", "Spring")
-          .title("문서 이름", "🧪 테스트 문서입니다")
+          .title("문서 이름", "테스트 작성")
           .date("생성 일시")
           .build()
       )
       .children(
         BlockBuilder.create()
-          .heading2("💥 Stacktrace")
+          .heading2("Stacktrace")
           .code(CodeLanguage.JAVA,
             "java.lang.RuntimeException: 테스트 예외 발생!\n" +
               "\tat com.gitbaby.error.Controller.ErrorTestController.fail(ErrorTestController.java:13)\n" +
