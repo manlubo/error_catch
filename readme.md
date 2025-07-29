@@ -1,21 +1,29 @@
 # Notion 오류 로깅 시스템
 
-Spring Boot 기반 애플리케이션에서 발생하는 예외 정보를 Notion 페이지로 전송해 기록하는 시스템입니다.  
+Spring Boot 기반 애플리케이션에서 발생하는 예외 정보를 Notion 페이지와 디스코드 웹훅으로 전송해 기록하는 시스템입니다.  
 개발 / 운영 중 발생하는 예외를 빠르게 파악하고 대응하기 위한 목적이며, 다음과 같은 특징을 가집니다:
 
-- 예외 발생 시 root cause 및 전체 stack trace 자동 정리
-- Notion API를 활용한 페이지 자동 생성
+### 목표
+- 예외 발생 시 root cause 및 전체 stack trace 자동 정리해 노션 및 디스코드 웹훅으로 기록
+- build.gradle 등에 의존성으로 추가해서 사용자가 이용할 수 있도록 하기
 
-## 📌 기술 스택
+### 📌 기술 스택
 - Java 21
 - Spring Boot 3.5.3
 - Notion Open API v1 (REST)
 - Jackson (JSON 직렬화)
 - Log4j2 (로그)
+- Discord Rest API
 
-## 구현필요 목록
-- 디스코드 알림
-- 누구나 쉽게 적용할 수 있도록 템플릿 구성
+### 구현완료 목록
+- Notion API 요청용 Builder DSL (BlockBuilder, PropertiesBuilder 등)
+- Discord embed 메시지 구성 및 전송 기능
+- 자동 예외 감지 AOP + 예외 요약 유틸 제공
+- application.yml 기반 설정 바인딩 (@ConfigurationProperties)
+- JSON 직렬화를 위한 jackson-databind 포함
+
+### 구현필요 목록
+- 의존성 추가할 수 있도록 세팅
 
 ---
 
@@ -56,7 +64,7 @@ Spring Boot 기반 애플리케이션에서 발생하는 예외 정보를 Notion
 - 테스트 코드 추가
     - Notion DSL 조립 테스트 작성 (SpringBootTest)
 
-## 2025-07-29
+### 2025-07-29
 
 - **Notion Block 확장**
   - `Block` 클래스에 다양한 블록 타입 추가:
