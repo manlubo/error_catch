@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class DiscordUploadService {
-  @Value("${discord.webhook-url}")
+//  @Value("${discord.webhook-url}")
   private String webhookUrl;
 
   public void send(String colorHex, String title, String classPath, String errorType) {

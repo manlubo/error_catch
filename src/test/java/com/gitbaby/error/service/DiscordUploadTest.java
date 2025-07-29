@@ -15,6 +15,6 @@ public class DiscordUploadTest {
   @Test
   @DisplayName("웹훅 전송 테스트")
   public void testWebhookUpload() {
-    service.send("ff0000","Exception 발생", "테스트 서비스", "클래스 패스");
+    service.send("ffff00","Exception 발생", "테스트 서비스", "클래스 패스");
   }
 }
