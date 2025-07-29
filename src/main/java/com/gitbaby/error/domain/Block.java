@@ -16,9 +16,42 @@ public class Block {
     this.content = content;
   }
 
+  public static Block heading1(String content) {
+    return new Block("heading_1", Map.of(
+      "heading_1", Map.of(
+        "rich_text", splitRichText(content)
+      )
+    ));
+  }
+
   public static Block heading2(String content) {
     return new Block("heading_2", Map.of(
       "heading_2", Map.of(
+        "rich_text", splitRichText(content)
+      )
+    ));
+  }
+
+
+  public static Block heading3(String content) {
+    return new Block("heading_3", Map.of(
+      "heading_3", Map.of(
+        "rich_text", splitRichText(content)
+      )
+    ));
+  }
+
+  public static Block bulletedListItem(String content) {
+    return new Block("bulleted_list_item", Map.of(
+      "bulleted_list_item", Map.of(
+        "rich_text", splitRichText(content)
+      )
+    ));
+  }
+
+  public static Block numberedListItem(String content) {
+    return new Block("numbered_list_item", Map.of(
+      "numbered_list_item", Map.of(
         "rich_text", splitRichText(content)
       )
     ));
@@ -39,6 +72,21 @@ public class Block {
       )
     ));
   }
+
+  public static Block quote(String content) {
+    return new Block("quote", Map.of(
+      "quote", Map.of(
+        "rich_text", splitRichText(content)
+      )
+    ));
+  }
+
+  public static Block divider() {
+    return new Block("divider", Map.of(
+      "divider", Map.of()
+    ));
+  }
+
 
   public static Block code(String content, CodeLanguage language) {
     return new Block("code", Map.of(

@@ -15,10 +15,41 @@ public class BlockBuilder {
     return new BlockBuilder();
   }
 
+  public BlockBuilder heading1(String content) {
+    blocks.add(Block.heading1(content));
+    return this;
+  }
+
   public BlockBuilder heading2(String content) {
     blocks.add(Block.heading2(content));
     return this;
   }
+
+  public BlockBuilder heading3(String content) {
+    blocks.add(Block.heading3(content));
+    return this;
+  }
+
+  public BlockBuilder bulletedListItem(String content) {
+    blocks.add(Block.bulletedListItem(content));
+    return this;
+  }
+
+  public BlockBuilder numberedListItem(String content) {
+    blocks.add(Block.numberedListItem(content));
+    return this;
+  }
+
+  public BlockBuilder quote(String content) {
+    blocks.add(Block.quote(content));
+    return this;
+  }
+
+  public BlockBuilder divider() {
+    blocks.add(Block.divider());
+    return this;
+  }
+
 
   public BlockBuilder paragraph(String content) {
     blocks.add(Block.paragraph(content));
@@ -57,4 +88,5 @@ public class BlockBuilder {
       putAll(content);
     }};
   }
+
 }

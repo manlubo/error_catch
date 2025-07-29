@@ -55,6 +55,22 @@ Spring Boot 기반 애플리케이션에서 발생하는 예외 정보를 Notion
 
 - 테스트 코드 추가
     - Notion DSL 조립 테스트 작성 (SpringBootTest)
+
+## 2025-07-29
+
+- **Notion Block 확장**
+  - `Block` 클래스에 다양한 블록 타입 추가:
+    - `heading1`, `heading3`, `bulletedListItem`, `numberedListItem`, `quote`, `divider`
+  - `BlockBuilder` 체이닝 빌더 패턴으로 위 블록들 지원
+
+- **Discord Webhook 연동 개선**
+  - `DiscordUploadService`에서 Discord Webhook으로 메시지 전송 시 `embed` 스타일 적용
+  - 제목, 설명, 서비스명, 클래스 경로 등 시각적으로 구분 가능하게 구성
+  - HEX 색상 코드를 int 값으로 변환해 컬러 지정 가능 (`#FF0000` → `16711680`)
+  - 예외 발생 위치 및 예외 종류 표시:
+    - `ExceptionFormater.getRootExceptionClassPath(Throwable)`
+    - `ExceptionFormater.getRootExceptionType(Throwable)`
+
 ---
 
 

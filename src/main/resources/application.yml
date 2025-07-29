@@ -2,6 +2,7 @@ spring:
   config:
     import:
       - optional:classpath:secret/notion.yml
+      - optional:classpath:secret/discord.yml
   application:
     name: error
 logging:
